@@ -31,6 +31,11 @@ document.getElementById("taskInput").addEventListener("keypress", function (e) {
 	}
 });
 
+function toggleDarkMode() {
+	let isDark = document.body.classList.toggle("dark-mode");
+	localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+}
+
 // Add slideOut animation
 const style = document.createElement("style");
 style.textContent = `
@@ -39,3 +44,9 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+document.addEventListener("DOMContentLoaded", (event) => {
+	if (localStorage.getItem("darkMode") === "enabled") {
+		document.body.classList.add("dark-mode");
+	}
+});
